@@ -14,4 +14,9 @@ public class ValidParenthesesTest {
 	public void invalid() {
 		assertFalse(ValidParentheses.isValid("{)]}"));
 	}
+
+	@Test
+	public void isRegular() {
+		assertTrue(ValidParentheses.isValid2("{[()]}"));
+	}
 }
