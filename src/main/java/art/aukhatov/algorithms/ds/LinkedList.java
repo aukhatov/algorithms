@@ -65,6 +65,24 @@ public class LinkedList<T> implements Iterable<T> {
 		return item;
 	}
 
+	public T removeLast() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
+
+		T item = tail.data;
+
+		tail = tail.previous != null ? tail.previous : null;
+
+		if (tail != null && tail.next != null) {
+			tail.next = null;
+		} else {
+			tail = null;
+		}
+
+		size--;
+		return item;
+	}
 
 
 	public boolean remove(T data) {

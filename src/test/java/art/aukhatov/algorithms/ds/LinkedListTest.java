@@ -67,4 +67,16 @@ public class LinkedListTest {
 		assertEquals("Hello", linkedList.removeFirst());
 		assertTrue(linkedList.isEmpty());
 	}
+
+	@Test
+	public void shouldReturnLastElementAfterRemoveIt() {
+		LinkedList<String> linkedList = new LinkedList<>();
+		linkedList.add("Hello");
+		linkedList.add("world!");
+		assertEquals("world!", linkedList.removeLast());
+		assertEquals(1, linkedList.size());
+
+		assertEquals("Hello", linkedList.removeLast());
+		assertTrue(linkedList.isEmpty());
+	}
 }
