@@ -102,4 +102,24 @@ public class LinkedList<T> implements Iterable<T> {
 	public Spliterator<T> spliterator() {
 		throw new UnsupportedOperationException("Not implement");
 	}
+
+	public LinkedList<T> reverse() {
+		LinkedList<T> reversedList = new LinkedList<>();
+		reversedList.tail = head;
+
+		Node<T> point = head;
+		Node<T> prev = null;
+		Node<T> next;
+
+		while (point != null) {
+			next = point.next;
+			point.next = prev;
+			prev = point;
+			point = next;
+		}
+
+		reversedList.head = prev;
+
+		return reversedList;
+	}
 }

@@ -35,4 +35,30 @@ public class LinkedListTest {
 
 		assertEquals(expectedList, actualList);
 	}
+
+	@Test
+	public void shouldReturnReversedStack() {
+		LinkedList<Integer> linkedList = new LinkedList<>();
+		linkedList.add(1);
+		linkedList.add(2);
+		linkedList.add(3);
+		linkedList.add(4);
+		linkedList.add(5);
+
+		List<Integer> expectedList = new ArrayList<>();
+		expectedList.add(5);
+		expectedList.add(4);
+		expectedList.add(3);
+		expectedList.add(2);
+		expectedList.add(1);
+
+		List<Integer> actualList = new ArrayList<>();
+		LinkedList<Integer> reverseList = linkedList.reverse();
+
+		for (Integer item : reverseList) {
+			actualList.add(item);
+		}
+
+		assertEquals(expectedList, actualList);
+	}
 }
