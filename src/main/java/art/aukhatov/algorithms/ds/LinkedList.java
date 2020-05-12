@@ -1,6 +1,7 @@
 package art.aukhatov.algorithms.ds;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -52,6 +53,19 @@ public class LinkedList<T> implements Iterable<T> {
 		}
 		size++;
 	}
+
+	public T removeFirst() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("List is empty");
+		}
+
+		T item = head.data;
+		head = head.next;
+		size--;
+		return item;
+	}
+
+
 
 	public boolean remove(T data) {
 		Node<T> point = head;
