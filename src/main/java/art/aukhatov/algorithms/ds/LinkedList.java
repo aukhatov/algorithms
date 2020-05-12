@@ -109,10 +109,9 @@ public class LinkedList<T> implements Iterable<T> {
 
 		Node<T> point = head;
 		Node<T> prev = null;
-		Node<T> next;
 
 		while (point != null) {
-			next = point.next;
+			Node<T> next = point.next;
 			point.next = prev;
 			prev = point;
 			point = next;

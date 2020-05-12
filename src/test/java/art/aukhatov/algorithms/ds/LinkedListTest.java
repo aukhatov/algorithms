@@ -3,10 +3,9 @@ package art.aukhatov.algorithms.ds;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LinkedListTest {
 
@@ -19,8 +18,6 @@ public class LinkedListTest {
 		linkedList.add(0);
 		linkedList.add(6);
 
-		Iterator<Integer> iterator = linkedList.iterator();
-
 		List<Integer> expectedList = new ArrayList<>();
 		expectedList.add(4);
 		expectedList.add(2);
@@ -29,8 +26,8 @@ public class LinkedListTest {
 		expectedList.add(6);
 		List<Integer> actualList = new ArrayList<>();
 
-		while (iterator.hasNext()) {
-			actualList.add(iterator.next());
+		for (Integer item : linkedList) {
+			actualList.add(item);
 		}
 
 		assertEquals(expectedList, actualList);
