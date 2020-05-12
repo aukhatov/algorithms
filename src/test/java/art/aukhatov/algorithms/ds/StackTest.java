@@ -3,6 +3,7 @@ package art.aukhatov.algorithms.ds;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StackTest {
 
@@ -24,5 +25,17 @@ public class StackTest {
 
 		assertEquals("3", stack.pop());
 		assertEquals(0, stack.size());
+	}
+
+	@Test
+	public void cleanUp() {
+		Stack<String> stack = new Stack<>();
+		stack.push("3");
+		stack.push("2");
+		stack.push("1");
+		stack.pop();
+		stack.pop();
+		stack.pop();
+		assertTrue(stack.isEmpty());
 	}
 }
