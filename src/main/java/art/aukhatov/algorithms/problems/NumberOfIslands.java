@@ -21,7 +21,10 @@ public class NumberOfIslands {
 	}
 
 	private static void bfs(int[][] map, int i, int j) {
-		if (i < 0 || i >= map.length || j < 0 || j >= map[i].length || map[i][j] == 0) {
+		boolean rowBound = i < 0 || i >= map.length;
+		boolean columnBound = j < 0 || j >= map[i].length;
+
+		if (rowBound || columnBound || map[i][j] == 0) {
 			return;
 		}
 
