@@ -1,0 +1,118 @@
+package art.aukhatov.algorithms.problems;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class BattleShip {
+
+    public String solution(int n, String s, String t) {
+        List<Ship> ships = parseShips(s, n * n);
+        List<Point> hits = parseHits(t, n * n);
+
+        int touched = 0;
+        int sunken = 0;
+
+        Iterator<Ship> shipIt = ships.iterator();
+
+        while (shipIt.hasNext()) {
+            Ship current = shipIt.next();
+            int touching = current.getHits(hits);
+            if (touching > 0) {
+                if (touching == current.getSize()) {
+                    sunken++;
+                } else {
+                    touched++;
+                }
+            }
+        }
+
+        return "" + sunken + "," + touched;
+    }
+
+    public List<Point> parseHits(String hits, int maxHits) {
+        List<Point> hitsList = new ArrayList<>(maxHits);
+        String[] coords = hits.split(" ");
+        for (String coord : coords) {
+            hitsList.add(new Point(coord));
+        }
+        return hitsList;
+    }
+
+    public List<Ship> parseShips(String ships, int maxShips) {
+        List<Ship> shipsList = new ArrayList<>(maxShips);
+        String[] shipsCoords = ships.split(", ");
+        for (String shipCoord : shipsCoords) {
+            String[] coords = shipCoord.split(" ");
+            shipsList.add(new Ship(new Point(coords[0]), new Point(coords[1])));
+        }
+        return shipsList;
+    }
+
+    static public class Point {
+        int x;
+        int y;
+
+        public Point(String coord) {
+            x = (coord.toUpperCase().charAt(1)) - ('A');
+            y = (coord.charAt(0)) - ('1');
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public boolean greaterOrEqual(Point other) {
+            return x >= other.x && y >= other.y;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + x + ", " + y + ")";
+        }
+    }
+
+    static public class Ship {
+        private Point topLeft;
+        private Point bottomRight;
+
+        public Ship(Point topLeft, Point bottomRight) {
+            this.topLeft = topLeft;
+            this.bottomRight = bottomRight;
+        }
+
+        public Point getTopLeft() {
+            return topLeft;
+        }
+
+        public Point getBottomRight() {
+            return bottomRight;
+        }
+
+        public int getSize() {
+            return (Math.abs(topLeft.getX() - bottomRight.getX()) + 1)
+                    * (Math.abs(topLeft.getY() - bottomRight.getY()) + 1);
+        }
+
+        @Override
+        public String toString() {
+            return "(" + topLeft + ", " + bottomRight + ")";
+        }
+
+        public int getHits(List<Point> shots) {
+            Iterator<Point> shotIt = shots.iterator();
+            int hits = 0;
+            while (shotIt.hasNext()) {
+                Point shot = shotIt.next();
+                if (shot.greaterOrEqual(topLeft) && bottomRight.greaterOrEqual(shot)) {
+                    hits++;
+                }
+            }
+            return hits;
+        }
+    }
+}
