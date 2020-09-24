@@ -21,6 +21,6 @@ public class BattleShipTest {
     @Test
     public void amazonTest3() {
         BattleShip battleShip = new BattleShip();
-        assertEquals("1,0", battleShip.solution(3, "1A 2A, 12A 12A", "12A"));
+        assertEquals("1,0", battleShip.solution(12, "1A 2A, 12A 12A", "12A"));
     }
 }
