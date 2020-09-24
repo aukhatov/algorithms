@@ -6,7 +6,14 @@ import java.util.List;
 
 public class BattleShip {
 
+    private static final int MAX_RANGE = 26;
+
     public String solution(int n, String s, String t) {
+
+        if (n > MAX_RANGE) {
+            return "0,0";
+        }
+
         List<Ship> ships = parseShips(s, n * n);
         List<Point> hits = parseHits(t, n * n);
 
